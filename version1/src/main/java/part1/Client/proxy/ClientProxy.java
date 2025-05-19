@@ -33,8 +33,10 @@ public class ClientProxy implements InvocationHandler {
         RpcResponse response= IOClient.sendRequest(host,port,request);
         return response.getData();
     }
-     public <T>T getProxy(Class<T> clazz){
+     public <T> T getProxy(Class<T> clazz){
         Object o = Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, this);
+        // 回传一个代理对象，这个代理对象在被调用时会执行invoke方法
+         // 而这个invoke方法就是当前类重写的invoke，也就是上面那个
         return (T)o;
     }
 }

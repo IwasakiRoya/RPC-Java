@@ -13,6 +13,7 @@ import part1.common.Message.RpcResponse;
 public class JsonSerializer implements Serializer {
     @Override
     public byte[] serialize(Object obj) {
+        //使用了 fastjson 的静态方法，内部会做：对象 → JSON 字符串 JSON 字符串再用 UTF-8 编码 → byte[]
         byte[] bytes = JSONObject.toJSONBytes(obj);
         return bytes;
     }

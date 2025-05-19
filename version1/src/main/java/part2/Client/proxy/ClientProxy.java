@@ -34,6 +34,7 @@ public class ClientProxy implements InvocationHandler {
     public ClientProxy(String host,int port){
         rpcClient=new NettyRpcClient(host,port);
     }
+
     //jdk动态代理，每一次代理对象调用方法，都会经过此方法增强（反射获取request对象，socket发送到服务端）
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
